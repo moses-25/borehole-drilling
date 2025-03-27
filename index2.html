@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>borehole drilling system</title>
+</head>
+<body>
+    <header>
+    <h1>this is my first page</h1>
+    <strong><a href="index.html">go to page 2</a></strong>
+    </header>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Borehole Drilling Requests</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Borehole Drilling Requests</h1>
+            <form id="request-form">
+                <input type="hidden" id="request-id" value="">
+                <div>
+                    <label for="full-name">Full Name:</label>
+                    <input type="text" id="full-name" required>
+                </div>
+                <div>
+                    <label for="contact-number">Contact Number:</label>
+                    <input type="text" id="contact-number" required>
+                </div>
+                <div>
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" required>
+                </div>
+                <div>
+                    <label for="desired-depth">Desired Drilling Depth:</label>
+                    <input type="number" id="desired-depth" required>
+                </div>
+                <div>
+                    <label for="preferred-date">Preferred Drilling Date:</label>
+                    <input type="date" id="preferred-date" required>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <h2>All Requests</h2>
+            <div id="requests-list"></div>
+        </div>
+    </body>
+    </html>
+    
+</body>
+</html>
