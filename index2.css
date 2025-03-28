@@ -8,6 +8,14 @@ body {
     margin: 0;
 }
 
+body{
+    background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMp2mZm9o1uSNlxyaNevosT-8wgx9V4kYE_g&s)
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 .container {
     background-color: #fff;
     padding: 20px;

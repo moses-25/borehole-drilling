@@ -8,12 +8,11 @@ body {
     margin: 0;
 }
 body{
-    background-image:url(https://i.pinimg.com/736x/26/28/f6/2628f61df7ce294d46fa3cb6a7931de5.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMQCOYX9MIvOS69pTLitI4D3c20TiYwkHawQ&s);
+ background-size: contain;
+ background-position: center;
+ background-repeat: no-repeat;
+ background-attachment: fixed;
 
 .container {
     background-color: white;
