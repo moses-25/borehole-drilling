@@ -1,106 +1,74 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const form = document.getElementById('request-form');
-    const requestsList = document.getElementById('requests-list');
-    const requestIdInput = document.getElementById('request-id');
-
-    let editMode = false;
-
-    // Fetch all requests
-    function fetchRequests() {
-        fetch('http://localhost:3000/requests')
-            .then(response => response.json())
-            .then(data => {
-                requestsList.innerHTML = '';
-                data.forEach(request => {
-                    const requestItem = document.createElement('div');
-                    requestItem.classList.add('request-item');
-                    requestItem.innerHTML = `
-                        <p><strong>Name:</strong> ${request.fullName}</p>
-                        <p><strong>Location:</strong> ${request.location}</p>
-                        <p><strong>Date:</strong> ${request.preferredDate}</p>
-                        <p><strong>Status:</strong> ${request.status}</p>
-                        <button onclick="editRequest(${request.id})">Edit</button>
-                        <button onclick="deleteRequest(${request.id})">Delete</button>
-                    `;
-                    requestsList.appendChild(requestItem);
-                });
-            });
-    }
-
-    // Create or update a request
-    form.addEventListener('submit', (event) => {
-        event.preventDefault();
-        const fullName = document.getElementById('full-name').value;
-        const contactNumber = document.getElementById('contact-number').value;
-        const location = document.getElementById('location').value;
-        const desiredDepth = document.getElementById('desired-depth').value;
-        const preferredDate = document.getElementById('preferred-date').value;
-
-        const requestData = {
-            fullName,
-            contactNumber,
-            location,
-            desiredDepth,
-            preferredDate,
-            status: 'Pending'
-        };
-
-        if (editMode) {
-            fetch(`http://localhost:3000/requests/${requestIdInput.value}`, {
-                method: 'PUT',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestData),
-            })
-            .then(response => response.json())
-            .then(() => {
-                form.reset();
-                requestIdInput.value = '';
-                editMode = false;
-                fetchRequests();
-            });
-        } else {
-            fetch('http://localhost:3000/requests', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(requestData),
-            })
-            .then(response => response.json())
-            .then(() => {
-                form.reset();
-                fetchRequests();
-            });
-        }
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the form element
+    const form = document.getElementById('drillingRequestForm');
+    
+    // Add submit event listener
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent page reload
+      
+      console.log("Form submitted!"); // Debug log
+      
+      // Collect form data
+      const formData = {
+        fullName: document.getElementById('fullName').value,
+        contractNumber: document.getElementById('contractNumber').value,
+        location: document.getElementById('location').value,
+        drillingDepth: document.getElementById('drillingDepth').value,
+        drillingDate: document.getElementById('drillingDate').value
+      };
+      
+      console.log("Form data:", formData); // Debug log
+      
+      // Get existing requests or initialize empty array
+      let requests = JSON.parse(localStorage.getItem('drillingRequests')) || [];
+      
+      // Add new request
+      requests.push(formData);
+      
+      // Save back to localStorage
+      localStorage.setItem('drillingRequests', JSON.stringify(requests));
+      console.log("Saved to localStorage:", requests); // Debug log
+      
+      // Update the display
+      displayClientDetails();
+      
+      // Reset the form
+      form.reset();
+      
+      alert('Request submitted successfully!');
     });
-
-    // Edit a request
-    window.editRequest = (id) => {
-        fetch(`http://localhost:3000/requests/${id}`)
-            .then(response => response.json())
-            .then(request => {
-                document.getElementById('full-name').value = request.fullName;
-                document.getElementById('contact-number').value = request.contactNumber;
-                document.getElementById('location').value = request.location;
-                document.getElementById('desired-depth').value = request.desiredDepth;
-                document.getElementById('preferred-date').value = request.preferredDate;
-                requestIdInput.value = request.id;
-                editMode = true;
-            });
-    };
-
-    // Delete a request
-    window.deleteRequest = (id) => {
-        fetch(`http://localhost:3000/requests/${id}`, {
-            method: 'DELETE',
-        })
-        .then(() => {
-            fetchRequests();
-        });
-    };
-
-    // Initial fetch of requests
-    fetchRequests();
-});
+    
+    // Function to display client details
+    function displayClientDetails() {
+      const requests = JSON.parse(localStorage.getItem('drillingRequests')) || [];
+      const listElement = document.getElementById('clientRequestsList');
+      
+      console.log("Displaying requests:", requests); // Debug log
+      
+      listElement.innerHTML = ''; // Clear previous entries
+      
+      if (requests.length === 0) {
+        listElement.innerHTML = '<p>No requests submitted yet.</p>';
+        return;
+      }
+      
+      requests.forEach((request, index) => {
+        const requestElement = document.createElement('div');
+        requestElement.className = 'request-item';
+        requestElement.innerHTML = `
+          <h3>Request #${index + 1}</h3>
+          <p><strong>Full Name:</strong> ${request.fullName}</p>
+          <p><strong>Contract Number:</strong> ${request.contractNumber}</p>
+          <p><strong>Location:</strong> ${request.location}</p>
+          <p><strong>Drilling Depth:</strong> ${request.drillingDepth} meters</p>
+          <p><strong>Proposed Date:</strong> ${request.drillingDate}</p>
+          <hr>
+        `;
+        listElement.appendChild(requestElement);
+      });
+    }
+    
+    // Display any existing requests when page loads
+    displayClientDetails();
+  });
