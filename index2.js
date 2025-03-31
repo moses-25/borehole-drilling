@@ -72,3 +72,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Display any existing requests when page loads
     displayClientDetails();
   });
+
+  //delete requests
+  function deleteRequest(requestId) {
+    const requestElement = document.getElementById(requestId);
+    if (requestElement) {
+      requestElement.remove(); // Removes the request from the DOM
+      alert(`Request ${requestId} deleted!`);
+    }
+  }
