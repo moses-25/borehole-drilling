@@ -16,44 +16,39 @@
       
     </head>
     <body>
-        
-        <div class="container">
-            <h1>Borehole Drilling Requests</h1>
-            <form id="request-form">
-                <input type="hidden" id="request-id" value="">
-                <div>
-                    <label for="full-name">Full Name:</label>
-                    <input type="text" id="full-name" required>
-                </div>
-                <div>
-                    <label for="contact-number">Contact Number:</label>
-                    <input type="text" id="contact-number" required>
-                </div>
-                <div>
-                    <label for="location">Location:</label>
-                    <input type="text" id="location" required>
-                </div>
-                <div>
-                    <label for="desired-depth">Desired Drilling Depth meters:</label>
-                    <input type="number" id="desired-depth" required>
-                </div>
-                <div>
-                    <label for="preferred-date">Preferred Drilling Date:</label>
-                    <input type="date" id="preferred-date" required>
-                </div>
-                <button type="submit">Submit</button>
-            </form>
-            <br>
-            <strong><a href="index.html">click here to go to page 2</a></strong>
-            <div id="requests-list"></div>
-        </div>
-        <div class="client-details-view">
-            <h2>Submitted Drilling Requests</h2>
-            <div id="clientRequestsList">
+        <form id="drillingRequestForm">
+            <!-- Make sure these IDs match exactly what's in the JavaScript -->
+            <div>
+              <label>Full Name:</label>
+              <input type="text" id="fullName" name="fullName" required>
             </div>
+            
+            <div>
+              <label>Contract Number:</label>
+              <input type="text" id="contractNumber" name="contractNumber" required>
+            </div>
+            
+            <div>
+              <label>Location:</label>
+              <input type="text" id="location" name="location" required>
+            </div>
+            
+            <div>
+              <label>Drilling Depth (meters):</label>
+              <input type="number" id="drillingDepth" name="drillingDepth" required>
+            </div>
+            
+            <div>
+              <label>Proposed Drilling Date:</label>
+              <input type="date" id="drillingDate" name="drillingDate" required>
+            </div>
+            
+            <button type="submit">Submit Request</button>
+          </form>
+          
+          <div id="clientRequestsList">
+            <!-- Submitted requests will appear here -->
           </div>
-    </body>
-    </html>
     <script src="/index2.js"></script>
 </body>
 </html>
