@@ -1,23 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>borehole drilling system</title>
-    <link rel="stylesheet" href="/index2.css">
-</head>
-<body>
-    
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Borehole Drilling Requests</title>
-        <link rel="stylesheet" href="styles.css">
-      
+      <link rel="stylesheet" href="/index2.css">
     </head>
     <body>
         <form id="drillingRequestForm">
-            <!-- Make sure these IDs match exactly what's in the JavaScript -->
             <div>
               <label>Full Name:</label>
               <input type="text" id="fullName" name="fullName" required>
@@ -42,20 +32,16 @@
               <label>Proposed Drilling Date:</label>
               <input type="date" id="drillingDate" name="drillingDate" required>
             </div>
-            
+           <br> 
             <button type="submit">Submit Request</button>
             <br>
             <br>
             <a href="/index.html">click to view page 2</a>
           </form>
-         <br>
-         <div>
-         <button>delete Request</button>
+
           <div id="clientRequestsList">
-             <div class="request" id="request1">
-            <button class="delete-btn" onclick="deleteRequest('request1')">Delete</button>
-            </div>
-        </div>
+            <!-- Submitted requests will appear here -->
+          </div>
           </div>
     <script src="/index2.js"></script>
 </body>
