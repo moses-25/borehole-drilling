@@ -126,6 +126,7 @@ button:hover {
     display: table;
   }
 
+  /* delete request*/
   .delete-btn {
     background-color: #ff4444;
     color: white;
